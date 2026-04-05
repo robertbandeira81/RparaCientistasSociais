@@ -1,0 +1,89 @@
+# =========================================
+# Aula 1 - Primeiros passos no R e no RStudio
+# =========================================
+
+# Primeiro passo: explicar o que é o R e o RStudio
+# R é uma linguagem de programação usada para análise de dados.
+# RStudio é um ambiente que facilita escrever e executar códigos em R.
+
+# =========================================
+# Segundo passo: as quatro operações matemáticas
+# =========================================
+
+2 + 2   # adição
+2 - 2   # subtração
+2 * 2   # multiplicação
+2 / 2   # divisão
+
+# =========================================
+# Terceiro passo: criar um vetor com a idade de 5 pessoas
+# =========================================
+
+idade <- c(18, 19, 20, 21, 22)
+
+# O c() quer dizer "combine".
+# No nosso caso, ele combina várias idades em um único vetor.
+
+idade
+
+# =========================================
+# Quarto passo: criar um vetor com o sexo das 5 pessoas
+# =========================================
+
+sexo <- c("feminino", "feminino", "masculino", "feminino", "masculino")
+
+# Aqui usamos aspas porque feminino e masculino são textos.
+# Em R, textos precisam ficar entre aspas.
+# Se escrevermos feminino sem aspas, o R vai entender que isso é o nome
+# de um objeto, e não uma palavra.
+
+sexo
+
+# =========================================
+# Quinto passo: verificar o tipo de cada objeto
+# =========================================
+
+class(idade)
+class(sexo)
+
+# idade é numérica
+# sexo é texto (character)
+
+# =========================================
+# Sexto passo: calcular a média das idades
+# =========================================
+
+mean(idade)
+
+# =========================================
+# Sétimo passo: calcular a mediana das idades
+# =========================================
+
+median(idade)
+
+# =========================================
+# Oitavo passo: medir a dispersão das idades
+# =========================================
+
+# Amplitude: diferença entre o maior e o menor valor
+max(idade) - min(idade)
+
+# Variância
+var(idade)
+
+# Desvio-padrão
+sd(idade)
+
+# =========================================
+# Nono passo: criar um data frame com idade e sexo
+# =========================================
+
+dados <- data.frame(idade, sexo)
+
+dados
+
+# O data frame funciona como uma pequena base de dados,
+# com colunas e linhas.
+# Esse formato é muito útil para trabalhar com bancos de dados
+# maiores, como o ESEB.
+
