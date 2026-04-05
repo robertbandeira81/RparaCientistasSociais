@@ -1,106 +1,478 @@
-# =========================================
-# Aula 1 - Primeiros passos no R e no RStudio
-# =========================================
+# ==================================================
+# CURSO DE R PARA CIENTISTAS SOCIAIS - AULA 1
+# Primeiros passos no R e no RStudio
+# Base de dados: ESEB 2022
+# ==================================================
 
-# Primeiro passo: explicar o que é o R e o RStudio
-# R é uma linguagem de programação usada para análise de dados.
-# RStudio é um ambiente que facilita escrever e executar códigos em R.
+# ==================================================
+# PASSO 1 - Entender o que é o R e o RStudio
+# ==================================================
 
-# =========================================
-# Segundo passo: as quatro operações matemáticas
-# =========================================
+# R é uma linguagem de programação voltada para análise de dados.
+# RStudio é um ambiente que facilita escrever, organizar e executar códigos em R.
+
+# No RStudio, normalmente trabalhamos com:
+# - Script: onde escrevemos e salvamos os códigos
+# - Console: onde os códigos são executados
+# - Environment: onde aparecem os objetos criados
+# - Files/Plots/Help: onde vemos arquivos, gráficos e ajuda
+
+# ==================================================
+# PASSO 2 - Fazer as quatro operações matemáticas
+# ==================================================
 
 2 + 2   # adição
 2 - 2   # subtração
 2 * 2   # multiplicação
 2 / 2   # divisão
 
-# =========================================
-# Terceiro passo: criar um vetor com a idade de 5 pessoas
-# =========================================
+# Aqui a ideia é mostrar que o R também funciona como calculadora.
+
+# ==================================================
+# PASSO 3 - Criar um vetor com a idade de 5 pessoas
+# ==================================================
 
 idade <- c(18, 19, 20, 21, 22)
 
+# O símbolo <- indica que estamos criando um objeto.
+# O nome do objeto é "idade".
 # O c() quer dizer "combine".
-# No nosso caso, ele combina várias idades em um único vetor.
+# Aqui ele combina vários números em um único vetor.
 
 idade
 
-# =========================================
-# Quarto passo: criar um vetor com o sexo das 5 pessoas
-# =========================================
+# ==================================================
+# PASSO 4 - Criar um vetor com o sexo das 5 pessoas
+# ==================================================
 
 sexo <- c("feminino", "feminino", "masculino", "feminino", "masculino")
 
 # Aqui usamos aspas porque feminino e masculino são textos.
-# Em R, textos precisam ficar entre aspas.
-# Se escrevermos feminino sem aspas, o R vai entender que isso é o nome de um objeto, e não uma palavra.
+# Em R, todo texto precisa estar entre aspas.
+# Se escrevermos feminino sem aspas, o R vai pensar
+# que "feminino" é um objeto já criado.
 
 sexo
 
-# =========================================
-# Quinto passo: verificar o tipo de cada objeto
-# =========================================
+# ==================================================
+# PASSO 5 - Verificar o tipo de cada objeto
+# ==================================================
 
 class(idade)
 class(sexo)
 
+# class() mostra a classe, isto é, o tipo do objeto.
 # idade é numérica
-# sexo é texto (character)
+# sexo é texto
 
-# =========================================
-# Sexto passo: calcular a média das idades
-# =========================================
+# ==================================================
+# PASSO 6 - Calcular a média das idades
+# ==================================================
 
 mean(idade)
 
-# =========================================
-# Sétimo passo: calcular a mediana das idades
-# =========================================
+# mean() calcula a média.
+
+# ==================================================
+# PASSO 7 - Calcular a mediana das idades
+# ==================================================
 
 median(idade)
 
-# =========================================
-# Oitavo passo: medir a dispersão das idades
-# =========================================
+# median() calcula a mediana.
+# A mediana é o valor que fica no centro quando os dados estão em ordem.
 
-# Amplitude
+# ==================================================
+# PASSO 8 - Medir a dispersão das idades
+# ==================================================
+
 max(idade) - min(idade)
 
-# Variância
+# max() pega o maior valor.
+# min() pega o menor valor.
+# Quando fazemos max() - min(), calculamos a amplitude.
+
 var(idade)
 
-# Desvio-padrão
+# var() calcula a variância.
+
 sd(idade)
 
-# =========================================
-# Nono passo: criar um data frame com idade e sexo
-# =========================================
+# sd() calcula o desvio-padrão.
+# O desvio-padrão mostra o quanto os valores se espalham em torno da média.
+
+# ==================================================
+# PASSO 9 - Criar um data frame com idade e sexo
+# ==================================================
 
 dados <- data.frame(idade, sexo)
 
 dados
 
-# O data frame funciona como uma pequena base de dados, com colunas e linhas.
+# data.frame() cria uma pequena base de dados.
+# Ele organiza as informações em colunas e linhas.
+# Isso será importante depois para trabalhar com bases maiores.
 
-# =========================================
-# Décimo passo: ler um arquivo CSV a partir de um link do GitHub
-# =========================================
+# ==================================================
+# PASSO 10 - Ler o arquivo do ESEB a partir de um link do GitHub
+# ==================================================
 
 eseb <- read.csv("https://raw.githubusercontent.com/robertbandeira81/RparaCientistasSociais/refs/heads/main/04810.csv")
 
-# Se o arquivo não abrir corretamente, pode ser necessário usar:
+# read.csv() lê um arquivo no formato CSV.
+# O link precisa estar entre aspas porque é texto.
+# Se o arquivo não abrir corretamente, pode ser necessário usar sep = ";"
+
+# Exemplo alternativo:
 # eseb <- read.csv("https://raw.githubusercontent.com/robertbandeira81/RparaCientistasSociais/refs/heads/main/04810.csv",
 #                  sep = ";")
 
-# =========================================
-# Décimo primeiro passo: visualizar a base de dados
-# =========================================
+# ==================================================
+# PASSO 11 - Visualizar a base de dados
+# ==================================================
 
 head(eseb)
 str(eseb)
 names(eseb)
 
-# head(eseb) mostra as primeiras linhas da base
-# str(eseb) mostra a estrutura da base
-# names(eseb) mostra o nome das variáveis
+# head() mostra as primeiras linhas da base.
+# str() mostra a estrutura da base.
+# names() mostra o nome das variáveis.
+
+# ==================================================
+# PASSO 12 - Fazer as primeiras análises da idade no ESEB
+# ==================================================
+
+head(eseb$D01A_IDADE)
+class(eseb$D01A_IDADE)
+
+# O símbolo $ serve para acessar uma variável dentro da base.
+# Aqui estamos acessando a variável D01A_IDADE dentro do objeto eseb.
+
+mean(eseb$D01A_IDADE, na.rm = TRUE)
+
+# mean() calcula a média.
+# na.rm = TRUE quer dizer:
+# "ignore os valores ausentes (NA)".
+
+median(eseb$D01A_IDADE, na.rm = TRUE)
+
+# median() calcula a mediana da idade.
+
+sd(eseb$D01A_IDADE, na.rm = TRUE)
+
+# sd() calcula o desvio-padrão da idade.
+
+summary(eseb$D01A_IDADE)
+
+# summary() faz um resumo da variável.
+# Ele mostra mínimo, quartis, mediana, média e máximo.
+
+hist(eseb$D01A_IDADE)
+
+# hist() cria um histograma.
+# O histograma mostra como a idade está distribuída.
+
+# ==================================================
+# PASSO 13 - Fazer as primeiras análises do sexo no ESEB
+# ==================================================
+
+head(eseb$D02)
+class(eseb$D02)
+
+table(eseb$D02)
+
+# table() cria uma tabela de frequência.
+# Tradução:
+# ele conta quantas vezes cada valor aparece.
+
+prop.table(table(eseb$D02))
+
+# prop.table() transforma a tabela em proporção.
+# Tradução:
+# em vez de mostrar só a contagem, mostra a participação de cada categoria no total.
+
+# ==================================================
+# PASSO 14 - Recodificar a variável sexo
+# ==================================================
+
+eseb$sexo_rec <- ifelse(eseb$D02 == 1, "masculino",
+                 ifelse(eseb$D02 == 2, "feminino", NA))
+
+# ifelse() funciona como uma condição.
+# Tradução:
+# se acontecer isso, faça isso; se não acontecer, faça outra coisa.
+#
+# Aqui estamos dizendo:
+# se D02 for 1, escreva "masculino"
+# senão, se D02 for 2, escreva "feminino"
+# senão, escreva NA
+
+head(eseb$sexo_rec)
+
+table(eseb$sexo_rec)
+prop.table(table(eseb$sexo_rec))
+
+# Agora a leitura da variável fica mais fácil.
+
+# ==================================================
+# PASSO 15 - Fazer um gráfico de barras do sexo
+# ==================================================
+
+barplot(
+  table(eseb$sexo_rec),
+  main = "Distribuição do sexo",
+  xlab = "Sexo",
+  ylab = "Frequência"
+)
+
+# barplot() cria um gráfico de barras.
+# Aqui usamos barplot(table(...)) porque:
+# 1) table() conta quantos casos existem em cada categoria
+# 2) barplot() transforma essa contagem em gráfico
+
+# ==================================================
+# PASSO 16 - Criar faixas de idade
+# ==================================================
+
+eseb$faixa_idade <- cut(
+  eseb$D01A_IDADE,
+  breaks = c(16, 29, 59, Inf),
+  labels = c("16-29", "30-59", "60+"),
+  right = TRUE
+)
+
+# cut() serve para dividir uma variável numérica em grupos.
+# Tradução:
+# estamos pegando a idade, que é numérica, e transformando em categorias.
+#
+# breaks = define os pontos de corte dos grupos
+# labels = dá nomes aos grupos
+# right = TRUE indica que o limite da direita entra no intervalo
+# Inf significa infinito, ou seja, não há limite superior
+
+head(eseb$faixa_idade)
+
+table(eseb$faixa_idade)
+prop.table(table(eseb$faixa_idade))
+
+barplot(
+  table(eseb$faixa_idade),
+  main = "Distribuição por faixa etária",
+  xlab = "Faixa etária",
+  ylab = "Frequência"
+)
+
+# ==================================================
+# PASSO 17 - Cruzar faixa etária e sexo
+# ==================================================
+
+table(eseb$faixa_idade, eseb$sexo_rec)
+
+# Quando colocamos duas variáveis dentro de table(),
+# o R cria uma tabela cruzada.
+# Tradução:
+# ele conta quantos casos existem em cada combinação das duas variáveis.
+
+prop.table(table(eseb$faixa_idade, eseb$sexo_rec), 1)
+
+# prop.table(..., 1) calcula proporções por linha.
+# Tradução:
+# dentro de cada faixa de idade, qual é a proporção de homens e mulheres?
+
+# ==================================================
+# PASSO 18 - Criar uma variável de ideologia
+# ==================================================
+
+head(eseb$Q19)
+summary(eseb$Q19)
+
+# A variável Q19 mede a posição ideológica do entrevistado.
+# Ela vai de 0 a 10, onde:
+# 0 = esquerda
+# 10 = direita
+
+# Vamos recodificar essa variável em três grupos:
+# 0 a 2  -> esquerda
+# 3 a 7  -> centro
+# 8 a 10 -> direita
+
+eseb$ideologia <- ifelse(eseb$Q19 >= 0 & eseb$Q19 <= 2, "esquerda",
+                  ifelse(eseb$Q19 >= 3 & eseb$Q19 <= 7, "centro",
+                  ifelse(eseb$Q19 >= 8 & eseb$Q19 <= 10, "direita", NA)))
+
+# Tradução do código:
+# ifelse() funciona como uma condição:
+# "se isso for verdade, faça isso; senão, faça outra coisa"
+#
+# Aqui estamos dizendo:
+# se Q19 estiver entre 0 e 2 -> "esquerda"
+# senão, se estiver entre 3 e 7 -> "centro"
+# senão, se estiver entre 8 e 10 -> "direita"
+# senão -> NA
+
+head(eseb$ideologia)
+
+table(eseb$ideologia)
+
+# table() conta quantas pessoas estão em cada grupo ideológico
+
+prop.table(table(eseb$ideologia))
+
+# prop.table() mostra a proporção de cada grupo no total
+
+barplot(
+  table(eseb$ideologia),
+  main = "Distribuição ideológica",
+  xlab = "Ideologia",
+  ylab = "Frequência"
+)
+
+# ==================================================
+# PASSO 19 - Cruzar sexo com ideologia
+# ==================================================
+
+table(eseb$sexo_rec, eseb$ideologia)
+
+# Agora estamos cruzando duas variáveis:
+# sexo e ideologia.
+# A tabela mostra quantas pessoas existem
+# em cada combinação entre sexo e ideologia.
+
+prop.table(table(eseb$sexo_rec, eseb$ideologia), 1)
+
+# prop.table(..., 1) calcula proporções por linha.
+# Como as linhas são os grupos de sexo,
+# estamos perguntando:
+# dentro do grupo das mulheres, qual a proporção de esquerda, centro e direita?
+# dentro do grupo dos homens, qual a proporção de esquerda, centro e direita?
+
+prop.table(table(eseb$sexo_rec, eseb$ideologia), 2)
+
+# prop.table(..., 2) calcula proporções por coluna.
+# Agora a pergunta é:
+# dentro da esquerda, qual a proporção de homens e mulheres?
+# dentro do centro, qual a proporção de homens e mulheres?
+# dentro da direita, qual a proporção de homens e mulheres?
+
+barplot(
+  table(eseb$sexo_rec, eseb$ideologia),
+  main = "Sexo e ideologia",
+  xlab = "Ideologia",
+  ylab = "Frequência",
+  legend.text = TRUE
+)
+
+# ==================================================
+# PASSO 20 - Cruzar idade e ideologia
+# ==================================================
+
+table(eseb$faixa_idade, eseb$ideologia)
+
+# Agora estamos cruzando faixa etária e ideologia.
+# A tabela mostra quantas pessoas existem
+# em cada combinação entre idade e ideologia.
+
+prop.table(table(eseb$faixa_idade, eseb$ideologia), 1)
+
+# Aqui estamos perguntando:
+# dentro dos jovens, qual a proporção de esquerda, centro e direita?
+# dentro dos adultos, qual a proporção de esquerda, centro e direita?
+# dentro dos idosos, qual a proporção de esquerda, centro e direita?
+
+prop.table(table(eseb$faixa_idade, eseb$ideologia), 2)
+
+# Agora a pergunta é:
+# dentro da esquerda, qual a proporção de jovens, adultos e idosos?
+# dentro do centro, qual a proporção de jovens, adultos e idosos?
+# dentro da direita, qual a proporção de jovens, adultos e idosos?
+
+barplot(
+  table(eseb$faixa_idade, eseb$ideologia),
+  main = "Faixa etária e ideologia",
+  xlab = "Ideologia",
+  ylab = "Frequência",
+  legend.text = TRUE
+)
+
+# ==================================================
+# PASSO 21 - Cruzar sexo, idade e ideologia
+# ==================================================
+
+tab_sexo_idade_ideologia <- table(eseb$sexo_rec, eseb$faixa_idade, eseb$ideologia)
+
+tab_sexo_idade_ideologia
+
+# Quando colocamos três variáveis dentro de table(),
+# o R cria uma tabela com três dimensões.
+#
+# Nesse caso:
+# - a primeira dimensão é o sexo
+# - a segunda dimensão é a faixa de idade
+# - a terceira dimensão é a ideologia
+#
+# O resultado mostra quantas pessoas existem
+# em cada combinação dessas três variáveis.
+
+tab_sexo_idade_ideologia["feminino", , ]
+
+# Aqui estamos olhando apenas a parte da tabela referente às mulheres.
+
+tab_sexo_idade_ideologia["masculino", , ]
+
+# Aqui estamos olhando apenas a parte da tabela referente aos homens.
+
+prop.table(tab_sexo_idade_ideologia, c(1, 2))
+
+# prop.table(..., c(1, 2)) calcula a proporção
+# dentro de cada combinação de sexo e faixa de idade.
+#
+# Em linguagem simples:
+# dentro das mulheres jovens, qual a proporção de esquerda, centro e direita?
+# dentro dos homens jovens, qual a proporção de esquerda, centro e direita?
+# e assim por diante.
+
+prop.table(tab_sexo_idade_ideologia, c(1, 2))["feminino", , ]
+
+# Aqui vemos apenas as proporções das mulheres,
+# separadas por faixa de idade.
+
+prop.table(tab_sexo_idade_ideologia, c(1, 2))["masculino", , ]
+
+# Aqui vemos apenas as proporções dos homens,
+# separadas por faixa de idade.
+
+tab_mulheres <- tab_sexo_idade_ideologia["feminino", , ]
+
+barplot(
+  tab_mulheres,
+  main = "Ideologia por faixa etária entre as mulheres",
+  xlab = "Ideologia",
+  ylab = "Frequência",
+  legend.text = TRUE
+)
+
+tab_homens <- tab_sexo_idade_ideologia["masculino", , ]
+
+barplot(
+  tab_homens,
+  main = "Ideologia por faixa etária entre os homens",
+  xlab = "Ideologia",
+  ylab = "Frequência",
+  legend.text = TRUE
+)
+
+# ==================================================
+# PASSO 22 - Resumo do que aprendemos
+# ==================================================
+
+# Nesta aula aprendemos:
+# - operações simples
+# - criação de vetores
+# - uso de aspas para textos
+# - média, mediana e dispersão
+# - criação de data frame
+# - leitura de arquivo CSV
+# - visualização de base de dados
+# - uso de table(), prop.table(), ifelse(), cut() e barplot()
+# - primeiras análises com o ESEB
