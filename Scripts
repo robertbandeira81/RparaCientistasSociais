@@ -34,8 +34,7 @@ sexo <- c("feminino", "feminino", "masculino", "feminino", "masculino")
 
 # Aqui usamos aspas porque feminino e masculino são textos.
 # Em R, textos precisam ficar entre aspas.
-# Se escrevermos feminino sem aspas, o R vai entender que isso é o nome
-# de um objeto, e não uma palavra.
+# Se escrevermos feminino sem aspas, o R vai entender que isso é o nome de um objeto, e não uma palavra.
 
 sexo
 
@@ -82,8 +81,7 @@ dados <- data.frame(idade, sexo)
 
 dados
 
-# O data frame funciona como uma pequena base de dados,
-# com colunas e linhas.
+# O data frame funciona como uma pequena base de dados, com colunas e linhas.
 
 # =========================================
 # Décimo passo: ler um arquivo CSV a partir de um link do GitHub
