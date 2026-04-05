@@ -65,7 +65,7 @@ median(idade)
 # Oitavo passo: medir a dispersão das idades
 # =========================================
 
-# Amplitude: diferença entre o maior e o menor valor
+# Amplitude
 max(idade) - min(idade)
 
 # Variância
@@ -84,6 +84,25 @@ dados
 
 # O data frame funciona como uma pequena base de dados,
 # com colunas e linhas.
-# Esse formato é muito útil para trabalhar com bancos de dados
-# maiores, como o ESEB.
 
+# =========================================
+# Décimo passo: ler um arquivo CSV a partir de um link do GitHub
+# =========================================
+
+eseb <- read.csv("https://raw.githubusercontent.com/robertbandeira81/RparaCientistasSociais/refs/heads/main/04810.csv")
+
+# Se o arquivo não abrir corretamente, pode ser necessário usar:
+# eseb <- read.csv("https://raw.githubusercontent.com/robertbandeira81/RparaCientistasSociais/refs/heads/main/04810.csv",
+#                  sep = ";")
+
+# =========================================
+# Décimo primeiro passo: visualizar a base de dados
+# =========================================
+
+head(eseb)
+str(eseb)
+names(eseb)
+
+# head(eseb) mostra as primeiras linhas da base
+# str(eseb) mostra a estrutura da base
+# names(eseb) mostra o nome das variáveis
